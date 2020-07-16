@@ -17,6 +17,7 @@ def import_descriptor (filename):
     smilelogd = {}
     smilesetid = {}
     descriptors = []
+    yval = []
     for l in fp:
         sline = l.split(",")
         smile = sline[0]
@@ -27,9 +28,10 @@ def import_descriptor (filename):
 
         smilelogd[smile] = logd
         smilesetid[smile] = vid
+        yval.append(np.float(sline[-1]))
     
     fp.close()
 
-    return smilelogd, np.asarray(descriptors)
+    return smilelogd, np.asarray(descriptors), yval
 
 
