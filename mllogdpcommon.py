@@ -32,6 +32,6 @@ def import_descriptor (filename):
     
     fp.close()
 
-    return smilelogd, np.asarray(descriptors), yval
+    return smilelogd, np.asarray(descriptors), yval, smilesetid
 
 
