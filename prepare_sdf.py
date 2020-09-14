@@ -46,8 +46,3 @@ if __name__ == "__main__":
 
         end = time.time()
 
-    print(errorscounter, " errors out of ", dim, " molecules ")
-    for i, s in enumerate(errorssmiles):
-        print("  %5d "%(i+1), s)
-
-    fp.close()
