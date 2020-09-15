@@ -30,6 +30,7 @@ if __name__ == "__main__":
     dim = len(data["SMILES"])
     for idx, ss in enumerate(data["SMILES"]):
         start = time.time()
+        name = data["NO"][idx]
 
         mol = Chem.MolFromSmiles(str(ss))
 
@@ -39,22 +40,9 @@ if __name__ == "__main__":
         mol_3D = Chem.AddHs(mol)
         AllChem.EmbedMolecule(mol_3D, randomSeed=0xf00d)
 
-        basename = "molecule_"+str(idx+1)
-
-        fout = Chem.SDWriter(basename+".mol")
+        fout = Chem.SDWriter(name+".mol")
         fout.write(mol_3D)
         fout.close()
 
-        os.remove(basename+".mol")
-
         end = time.time()
 
-        print("Mol %10d of %10d has %5d "%(idx+1, dim, mol.GetNumAtoms()), 
-                " atoms and LogD %10.5f (%12.7s s) in set %s"%(logd, (end - start), 
-                    setid))
-
-    print(errorscounter, " errors out of ", dim, " molecules ")
-    for i, s in enumerate(errorssmiles):
-        print("  %5d "%(i+1), s)
-
-    fp.close()
