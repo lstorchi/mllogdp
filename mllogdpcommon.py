@@ -26,7 +26,7 @@ def import_descriptor (filename):
         logd = np.float64(sline[-1])
         vid = sline[2]
 
-        descv = sline[3].split()
+        descv = ' '.join(sline[3].split()).split(" ")
 
         descriptors.append([ np.int(v) for v in descv])
 
@@ -36,6 +36,6 @@ def import_descriptor (filename):
     
     fp.close()
 
-    return smilelogd, np.asarray(descriptors), yval, smilesetid
-
-
+    return smilelogd, \
+            np.asarray(descriptors), \
+            np.asarray(yval), smilesetid
