@@ -93,7 +93,8 @@ if __name__ == "__main__":
         atomtypes = molatomtypes[mol]
         setid = data[data["SMILES"] == mol]["DatasetID"].values[0]
         desc = mllogdpcommon.to_descriptor (orderedset, atomtypes)
-        line = mol + " , " + setid + " , "
+        uniqueid = data[data["SMILES"] == mol]["NO"].values[0]
+        line = uniqueid + " , " + mol + " , " + setid + " , "
         for v in desc:
             line += "%5d , "%(v)
         line += " %15.6f \n"%(mollogd[mol])
