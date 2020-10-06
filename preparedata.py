@@ -89,6 +89,7 @@ if __name__ == "__main__":
         orderedset.append(e)
      
     fp = open(args.outfilename, "w")
+    fp.write("UNIQUEID, SMILE, SETID, DESCRIPTOR, LOGD\n")
     for mol in molatomtypes:
         atomtypes = molatomtypes[mol]
         setid = data[data["SMILES"] == mol]["DatasetID"].values[0]
@@ -96,8 +97,8 @@ if __name__ == "__main__":
         uniqueid = data[data["SMILES"] == mol]["NO"].values[0]
         line = uniqueid + " , " + mol + " , " + setid + " , "
         for v in desc:
-            line += "%5d , "%(v)
-        line += " %15.6f \n"%(mollogd[mol])
+            line += "%5d "%(v)
+        line += " , %15.6f \n"%(mollogd[mol])
         fp.write(line)
 
     fp.close()
